@@ -55,12 +55,16 @@ services:
       POSTGRES_PASSWORD: 'docker'
       POSTGRES_DB: 'laravel_development'
     volumes:
-      - ./.docker/db/data:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
       - ./.docker/db/sql:/docker-entrypoint-initdb.d
     ports:
       - 5432:5432
     networks:
       - back
+
+volumes:
+  db:
+    driver: local
 
 networks:
   back:
